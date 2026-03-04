@@ -1,6 +1,6 @@
 {
   "name": "pi-kagi-search",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A pi extension to search Kagi",
   "license": "MIT",
   "author": "Richard Anaya",
@@ -13,5 +13,8 @@
     "extensions": [
       "./index.ts"
     ]
+  },
+  "dependencies": {
+    "@toon-format/toon": "^2.1.0"
   }
 }

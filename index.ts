@@ -3,6 +3,7 @@ import type { ExtensionAPI } from "@mariozechner/pi-coding-agent";
 import { homedir } from "node:os";
 import { join } from "node:path";
 import { readFile } from "node:fs/promises";
+import { encode } from "@toon-format/toon";
 
 const CONFIG_PATH = join(homedir(), ".pi", "kagi-search.json");
 
@@ -35,9 +36,10 @@ export default function (pi: ExtensionAPI) {
         },
       );
       const data = await result.json();
+      const essentials = data.data.map(({ t, ...rest }) => rest);
       return {
-        content: [{ type: "text", text: JSON.stringify(data) }],
-        details: { query, results: data.results },
+        content: [{ type: "text", text: encode(essentials) }],
+        details: { query, results: essentials },
       };
     },
   });
